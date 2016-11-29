@@ -81,8 +81,13 @@ public class Goeat_homepage_Fragment extends BaseFragment {
                     Intent intent = new Intent (getActivity (), HomePageActivity.class);
                     intent.putExtra ("network", data.get (pos).getLink ());
                     startActivity (intent);
-                }else if (i == 5){
-                    Intent intent =new Intent (getActivity (),HomePageDetailsActivity.class);
+                } else if (i == 5) {
+                    Intent intent = new Intent (getActivity (), HomePageDetailsActivity.class);
+                    intent.putExtra ("card_image", data.get (pos).getCard_image ());
+                    intent.putExtra ("publisher_avatar", data.get (pos).getPublisher_avatar ());
+                    intent.putExtra ("publisher", data.get (pos).getPublisher ());
+                    intent.putExtra ("like_ct", data.get (pos).getLike_ct () + "");
+                    startActivity (intent);
                 }
             }
         });

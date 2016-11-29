@@ -69,6 +69,7 @@ public class GoeatHomeAdapter extends RecyclerView.Adapter {
         this.myOnClick = myOnClick;
         notifyDataSetChanged ();
     }
+    
 
     @Override
     public int getItemViewType (int position) {
