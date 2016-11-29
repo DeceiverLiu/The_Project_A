@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Ten"
+        android:background="@color/background_color"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/Twenty">
+        <TextView
+            android:id="@+id/Good_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/Good_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Good_title"
+            android:layout_marginTop="@dimen/Twenty"/>
+        <ImageView
+            android:id="@+id/Good_watch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Good_tail"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/ic_watch"/>
+        <TextView
+            android:id="@+id/Good_tail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Good_source"
+            android:layout_marginLeft="@dimen/Ten"
+            android:layout_toRightOf="@id/Good_watch"/>
+        <ImageView
+            android:id="@+id/Goodfood_images"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+</LinearLayout>

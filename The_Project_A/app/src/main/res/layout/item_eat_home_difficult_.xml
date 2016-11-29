@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="290dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/Five"
+    android:orientation="vertical"
+    app:cardElevation="@dimen/Ten">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/ic_home_card_shadow"
+        android:paddingLeft="@dimen/Ten">
+        <ImageView
+            android:id="@+id/eat_img_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginTop="300dp"
+            android:background="@color/White"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/eat_home_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Ten"
+                android:layout_toRightOf="@+id/eat_home_homeAvatar"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/Ten">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/eat_home_homeAvatar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"/>
+
+                <TextView
+                    android:id="@+id/eat_home_publisher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/Ten"
+                    android:layout_toRightOf="@+id/eat_home_homeAvatar"
+                    android:text="123"/>
+
+
+                <ImageView
+                    android:id="@+id/eat_home_imgUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/eat_home_thumbUp"
+                    android:background="@mipmap/ic_photo_agree"/>
+                <TextView
+                    android:id="@+id/eat_home_thumbUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/Ten"
+                    android:text="132"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

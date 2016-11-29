@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:orientation="vertical"
+    tools:context="com.lanou3g.the_project_a.activity.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/Main_frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Zero"
+        android:layout_weight="1"/>
+    <include layout="@layout/background_line"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/Food_wikipedia"
+            android:layout_width="@dimen/Zero"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radiobutton_onclick"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_food_wikipedia"
+            android:gravity="center"
+            android:text="@string/food_wikipedia"
+            android:textColor="@drawable/selector_radiobutton_text"/>
+        <RadioButton
+            android:id="@+id/Going_to_eat"
+            android:layout_width="@dimen/Zero"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radiobutton_onclick"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_going_to_eat"
+            android:gravity="center"
+            android:text="@string/going_to_eat"
+            android:textColor="@drawable/selector_radiobutton_text"/>
+        <RadioButton
+            android:id="@+id/My"
+            android:layout_width="@dimen/Zero"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radiobutton_onclick"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_my"
+            android:gravity="center"
+            android:text="@string/my"
+            android:textColor="@drawable/selector_radiobutton_text"/>
+
+    </RadioGroup>
+</LinearLayout>

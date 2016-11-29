@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/White"
+              android:descendantFocusability="blocksDescendants"
+              android:orientation="vertical">
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/img_home_bg">
+
+                <ImageView
+                    android:id="@+id/home_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="@dimen/Fifteen"
+                    android:src="@mipmap/ic_home_logo"/>
+
+                <!--搜索框上面的文字-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/home_logo"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/Thirty"
+                    android:text="@string/Query_food_information"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/EighteenthS"/>
+
+                <LinearLayout
+                    android:id="@+id/Linear_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/Fifty"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/Fifteen"
+                    android:background="@drawable/linearlayout_onclick"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/Ten"
+                        android:background="@mipmap/ic_home_search"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/Ten"
+                        android:text="@string/Food_name"
+                        android:textColor="#ff8d01"/>
+
+                </LinearLayout>
+
+                <!--饮食分析, 搜索对比 , 扫码对比按钮-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="#f1f7f1"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/Ten"
+                        android:background="#FFFFFF"
+                        android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/Food_analysis"
+                            android:layout_width="@dimen/Zero"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:drawableTop="@drawable/selector_library_analysis"
+                            android:text="@string/Food_analysis"/>
+                        <Button
+                            android:id="@+id/Search_contrast"
+                            android:layout_width="@dimen/Zero"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:drawableTop="@drawable/selector_library_compare"
+                            android:text="@string/Search_contrast"/>
+                        <Button
+                            android:id="@+id/Sweep_code_comparison"
+                            android:layout_width="@dimen/Zero"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:drawableTop="@drawable/selector_library_scan_compare"
+                            android:text="@string/Sweep_code_comparison"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f1f7f1"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/Ten">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:background="@mipmap/ic_home_category_bg"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/Ten"
+                        android:text="食物分类"
+                        android:textSize="16sp"/>
+
+                    <GridView
+                        android:id="@+id/Grid_Group"
+                        android:layout_width="match_parent"
+                        android:layout_height="500dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="50dp"
+                        android:background="#FFFFFF"
+                        android:horizontalSpacing="@dimen/Ten"
+                        android:numColumns="3"
+                        android:scrollbars="none"
+                        android:verticalSpacing="@dimen/Ten"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/Ten">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:background="@mipmap/ic_home_category_bg"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="热门品牌"
+                        android:textSize="16sp"/>
+
+                    <GridView
+                        android:id="@+id/Grid_Brand"
+                        android:layout_width="match_parent"
+                        android:layout_height="450dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="50dp"
+                        android:background="#FFFFFF"
+                        android:horizontalSpacing="@dimen/Ten"
+                        android:numColumns="3"
+                        android:scrollbars="none"
+                        android:verticalSpacing="@dimen/Ten">
+                    </GridView>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/Ten">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:background="@mipmap/ic_home_category_bg"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/Ten"
+                        android:text="连锁餐饮"
+                        android:textSize="16sp"/>
+
+                    <GridView
+                        android:id="@+id/Grid_Restaurant"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="50dp"
+                        android:background="#FFFFFF"
+                        android:horizontalSpacing="@dimen/Ten"
+                        android:numColumns="3"
+                        android:scrollbars="none"
+                        android:verticalSpacing="@dimen/Ten"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

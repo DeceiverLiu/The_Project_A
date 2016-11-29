@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <View android:layout_width="match_parent"
+          android:layout_height="@dimen/Ten"
+          android:background="@color/background_color"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/Twenty">
+        <TextView
+            android:id="@+id/Konwledge_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/Konwledge_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Konwledge_title"
+            android:layout_marginTop="@dimen/Twenty"/>
+        <ImageView
+            android:id="@+id/Konwledge_watch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Konwledge_tail"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/ic_watch"/>
+        <TextView
+            android:id="@+id/Konwledge_tail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Konwledge_source"
+            android:layout_marginLeft="@dimen/Ten"
+            android:layout_toRightOf="@id/Konwledge_watch"/>
+        <ImageView
+            android:id="@+id/Konwledge_images"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+</RelativeLayout>

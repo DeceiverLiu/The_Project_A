@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">The_Project_A</string>
+    <string name="Query_food_information">查询食物信息</string>
+    <string name="Food_name">请输入食物名称</string>
+    <string name="Food_analysis">饮食分析</string>
+    <string name="Search_contrast">搜索对比</string>
+    <string name="Sweep_code_comparison">扫码对比</string>
+    <string name="food_wikipedia">食物百科</string>
+    <string name="going_to_eat">逛吃</string>
+    <string name="my">我的</string>
+    <string name="Click_login">点击登录</string>
+    <string name="My_order">我的订单</string>
+    <string name="Data_upload_food">上传食物数据</string>
+    <string name="My_collect">我的收藏</string>
+    <string name="My_photo">我的照片</string>
+    <string name="mint">薄荷</string>
+    <string name="WeChat">微信</string>
+    <string name="weibo">微博</string>
+    <string name="QQ">QQ</string>
+    <string name="login">登录</string>
+    <string name="ShiQiang">狗粮派</string>
+</resources>
