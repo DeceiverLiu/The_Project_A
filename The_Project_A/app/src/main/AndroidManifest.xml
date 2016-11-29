@@ -24,6 +24,7 @@
         <activity android:name=".activity.MainActivity"/>
         <activity android:name=".adapter.HomePageGridListAdapter"/>
         <activity android:name=".activity.goeat.HomePageActivity"/>
+        <activity android:name=".activity.goeat.HomePageDetailsActivity"/>
     </application>
 
 </manifest>

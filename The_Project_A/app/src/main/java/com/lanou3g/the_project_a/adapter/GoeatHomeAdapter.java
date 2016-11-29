@@ -37,7 +37,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lanou3g.the_project_a.R;
-import com.lanou3g.the_project_a.activity.onclick.MyOnClick;
+import com.lanou3g.the_project_a.onclick.MyOnClick;
 import com.lanou3g.the_project_a.bean.GoeatHomeBean;
 
 import java.util.ArrayList;
@@ -111,7 +111,7 @@ public class GoeatHomeAdapter extends RecyclerView.Adapter {
         holder.itemView.setOnClickListener (new OnClickListener () {
             @Override
             public void onClick (View v) {
-                myOnClick.myListener(position);
+                myOnClick.myListener(position,bean.get (position).getContent_type ());
             }
         });
     }

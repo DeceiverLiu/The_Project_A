@@ -35,7 +35,8 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import com.android.volley.VolleyError;
 import com.lanou3g.the_project_a.R;
 import com.lanou3g.the_project_a.activity.goeat.HomePageActivity;
-import com.lanou3g.the_project_a.activity.onclick.MyOnClick;
+import com.lanou3g.the_project_a.activity.goeat.HomePageDetailsActivity;
+import com.lanou3g.the_project_a.onclick.MyOnClick;
 import com.lanou3g.the_project_a.adapter.GoeatHomeAdapter;
 import com.lanou3g.the_project_a.base.BaseFragment;
 import com.lanou3g.the_project_a.bean.GoeatHomeBean;
@@ -75,10 +76,14 @@ public class Goeat_homepage_Fragment extends BaseFragment {
         requestData ();
         adapter.setMyOnClick (new MyOnClick () {
             @Override
-            public void myListener (int pos) {
-                Intent intent=new Intent (getActivity (), HomePageActivity.class);
-                intent.putExtra ("network",data.get (pos).getLink ());
-                startActivity (intent);
+            public void myListener (int pos, int i) {
+                if (i == 6) {
+                    Intent intent = new Intent (getActivity (), HomePageActivity.class);
+                    intent.putExtra ("network", data.get (pos).getLink ());
+                    startActivity (intent);
+                }else if (i == 5){
+                    Intent intent =new Intent (getActivity (),HomePageDetailsActivity.class);
+                }
             }
         });
 
@@ -93,7 +98,7 @@ public class Goeat_homepage_Fragment extends BaseFragment {
 
     private void requestData () {
         StartURL (createUrl (1));
-        StaggeredGridLayoutManager manager=new StaggeredGridLayoutManager (2, StaggeredGridLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager (2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager (manager);
 
         //上拉加载
@@ -112,8 +117,6 @@ public class Goeat_homepage_Fragment extends BaseFragment {
         });
 
     }
-
-
 
 
     //获取数据

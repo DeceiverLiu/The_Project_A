@@ -1,4 +1,4 @@
-package com.lanou3g.the_project_a.activity.onclick;
+package com.lanou3g.the_project_a.onclick;
 
  /*
                    _ooOoo_
@@ -27,5 +27,5 @@ Created by Android_刘德强 on 16/11/29.
 
 //逛吃 首页 RecyclerView 抽象监听
 public interface MyOnClick {
-    void myListener(int pos);
+    void myListener(int pos , int  i);
 }
