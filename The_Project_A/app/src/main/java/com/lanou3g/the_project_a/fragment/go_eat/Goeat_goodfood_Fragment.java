@@ -26,6 +26,7 @@ Created by Android_刘德强 on 16/11/23.
 */
 
 
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,10 +34,12 @@ import android.support.v7.widget.RecyclerView;
 
 import com.android.volley.VolleyError;
 import com.lanou3g.the_project_a.R;
+import com.lanou3g.the_project_a.activity.goeat.KnowLedgeActivity;
 import com.lanou3g.the_project_a.adapter.GoeatGoodAdapter;
 import com.lanou3g.the_project_a.base.BaseFragment;
 import com.lanou3g.the_project_a.bean.GoeatGoodBean;
 import com.lanou3g.the_project_a.bean.GoeatGoodBean.FeedsBean;
+import com.lanou3g.the_project_a.onclick.MyOnClick;
 import com.lanou3g.the_project_a.third_party.EndLessOnScrollListener;
 import com.lanou3g.the_project_a.url.MyUrl;
 import com.lanou3g.the_project_a.volley.NetHelper;
@@ -50,6 +53,7 @@ public class Goeat_goodfood_Fragment extends BaseFragment {
     private GoeatGoodAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
     private int i = 1;
+    private List<FeedsBean> bean;
 
     @Override
     public int initLayout () {
@@ -81,6 +85,14 @@ public class Goeat_goodfood_Fragment extends BaseFragment {
     public void initData () {
         //开启线程 获取网络数据
         requestData ();
+        adapter.setMyOnClick (new MyOnClick () {
+            @Override
+            public void myListener (int pos, int i) {
+                Intent intent=new Intent (getActivity (), KnowLedgeActivity.class);
+                intent.putExtra ("knowLink",adapter.getBean ().get (pos).getLink ());
+                startActivity (intent);
+            }
+        });
     }
 
     //拼接网址
@@ -115,7 +127,7 @@ public class Goeat_goodfood_Fragment extends BaseFragment {
         NetHelper.MyRequest (url, GoeatGoodBean.class, new NetListener<GoeatGoodBean> () {
             @Override
             public void successListener (GoeatGoodBean response) {
-                List<FeedsBean> bean = response.getFeeds ();
+                bean = response.getFeeds ();
                 adapter.setBean (bean);
             }
 

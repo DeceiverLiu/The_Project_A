@@ -39,8 +39,15 @@ public class MyUrl {
     public static final String EATGOODFOODBEFORE="http://food.boohee.com/fb/v1/feeds/category_feed?page=";
     public static final String EATGOODFOODAFTER="&category=4&per=10";
     //逛吃- 测评
-    public static final String EATREVIEW= "http://food.boohee.com/fb/v1/feeds/category_feed?page=1&category=2&per=10";
+    public static final String AVI_ONE = "http://food.boohee.com/fb/v1/feeds/category_feed?page=";
+    public static final String AVI_TWO = "&category=2&per=10";
     //食物百科 - GridView - 营养素排序
     public static final String WILIPEDOAPOP= "http://food.boohee.com/fb/v1/foods/sort_types";
+    //食物百科 - GridView 详情 - 食物分类
+    public static final String ClassificationBefore ="http://food.boohee.com/fb/v1/foods?kind=";
+    public static final String ClassificationMiddle ="&value=";
+    public static final String ClassificationAfter ="&order_by=1&page=";
+    public static final String ClassificationLast ="&order_asc=0&token=&user_key=&app_version=2.6&app_device=Android&os_version=5.1&phone_model=Google+Nexus+7+2013+-+5.1.0+-+API+22+-+1200x1920&channel=baidu";
+
 
 }

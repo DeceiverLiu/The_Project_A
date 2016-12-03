@@ -30,10 +30,12 @@ import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.lanou3g.the_project_a.activity.LoginActivity;
 import com.lanou3g.the_project_a.R;
+import com.lanou3g.the_project_a.activity.SetUpActivity;
 import com.lanou3g.the_project_a.base.BaseFragment;
 
 
@@ -44,6 +46,7 @@ public class My_Fragment extends BaseFragment implements OnClickListener{
     private Button my_login;//点击登录按钮
     private RelativeLayout RelativeLayout_photo,RelativeLayout_collcet, //我的照片,我的收藏,上传食物数据,我的订单
             RelativeLayout_upload,RelativeLayout_order;
+    private ImageView imageView_setup;
     @Override
     public int initLayout () {
         return R.layout.fragment_my;
@@ -55,6 +58,8 @@ public class My_Fragment extends BaseFragment implements OnClickListener{
         RelativeLayout_photo = (RelativeLayout) getView ().findViewById (R.id.RelativeLayout_photo);
         RelativeLayout_collcet = (RelativeLayout) getView ().findViewById (R.id.RelativeLayout_collcet);
         RelativeLayout_upload = (RelativeLayout) getView ().findViewById (R.id.RelativeLayout_upload);
+        imageView_setup = (ImageView) getView ().findViewById (R.id.imageView_setup);
+        imageView_setup.setOnClickListener (this);
         my_login = (Button) getView ().findViewById (R.id.my_login);
         RelativeLayout_upload.setOnClickListener (this);
         RelativeLayout_order.setOnClickListener (this);
@@ -87,6 +92,9 @@ public class My_Fragment extends BaseFragment implements OnClickListener{
             case R.id.RelativeLayout_order:
                 StartAty ();
                 break;
+            case R.id.imageView_setup:
+                Intent intent=new Intent (getActivity (), SetUpActivity.class);
+                startActivity (intent);
         }
     }
 

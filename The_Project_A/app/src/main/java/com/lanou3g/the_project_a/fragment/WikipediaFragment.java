@@ -35,12 +35,12 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.lanou3g.the_project_a.R;
 import com.lanou3g.the_project_a.activity.GiftSaidActivity;
 import com.lanou3g.the_project_a.activity.LoginActivity;
+import com.lanou3g.the_project_a.activity.SearchActivity;
 import com.lanou3g.the_project_a.activity.WikipediaDetailsActivity;
 import com.lanou3g.the_project_a.adapter.HomePageGridBrandAdapter;
 import com.lanou3g.the_project_a.adapter.HomePageGridGroupAdapter;
@@ -55,6 +55,7 @@ import com.lanou3g.the_project_a.volley.NetListenet.NetListener;
 //食物百科 Fragment 页面
 public class WikipediaFragment extends BaseFragment implements OnClickListener {
     private LinearLayout linearsearch;//搜索按钮
+    private HomePageGridBean bean;
     private ImageView home_logo;
     private Button foodAnalysis;//饮食分析
     private GridView gridGroup, gridBrand, gridRestaurant;//页面中三个GridView的ID
@@ -81,7 +82,7 @@ public class WikipediaFragment extends BaseFragment implements OnClickListener {
         homePageGridBrandAdapter = new HomePageGridBrandAdapter (getContext ());
         homePageGridGroupAdapter = new HomePageGridGroupAdapter (getContext ());
         homePageGridRestaurantAdapter = new HomePageGridRestaurantAdapter (getContext ());
-
+        bean = new HomePageGridBean ();
 
     }
 
@@ -89,15 +90,39 @@ public class WikipediaFragment extends BaseFragment implements OnClickListener {
     public void initData () {
         //开启线程 获取数据
         requestData ();
+        //三个GridView点击详情
+        OnAllItemClickListener ();
+    }
+
+    private void OnAllItemClickListener () {
+
         gridGroup.setOnItemClickListener (new OnItemClickListener () {
             @Override
             public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent (getActivity (), WikipediaDetailsActivity.class);
-//                intent.putExtra ("key",parent.)
+                Intent intent = new Intent (getActivity (), WikipediaDetailsActivity.class);
+                intent.putExtra ("kind", bean.getGroup ().get (0).getKind ());
+                intent.putExtra ("id", bean.getGroup ().get (0).getCategories ().get (position).getId () + "");
                 startActivity (intent);
             }
         });
-
+        gridBrand.setOnItemClickListener (new OnItemClickListener () {
+            @Override
+            public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent (getActivity (), WikipediaDetailsActivity.class);
+                intent.putExtra ("kind", bean.getGroup ().get (1).getKind ());
+                intent.putExtra ("id", bean.getGroup ().get (1).getCategories ().get (position).getId () + "");
+                startActivity (intent);
+            }
+        });
+        gridRestaurant.setOnItemClickListener (new OnItemClickListener () {
+            @Override
+            public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent (getActivity (), WikipediaDetailsActivity.class);
+                intent.putExtra ("kind", bean.getGroup ().get (2).getKind ());
+                intent.putExtra ("id", bean.getGroup ().get (2).getCategories ().get (position).getId () + "");
+                startActivity (intent);
+            }
+        });
     }
 
     private void requestData () {
@@ -105,6 +130,7 @@ public class WikipediaFragment extends BaseFragment implements OnClickListener {
         NetHelper.MyRequest (MyUrl.WIKIPEDIA, HomePageGridBean.class, new NetListener<HomePageGridBean> () {
             @Override
             public void successListener (HomePageGridBean response) {
+                bean = response;
                 homePageGridGroupAdapter.setBean (response);
                 homePageGridBrandAdapter.setBean (response);
                 homePageGridRestaurantAdapter.setBean (response);
@@ -126,14 +152,15 @@ public class WikipediaFragment extends BaseFragment implements OnClickListener {
 
         switch (view.getId ()) {
             case R.id.Linear_search:
-                Toast.makeText (getActivity (), "测试", Toast.LENGTH_SHORT).show ();
+                Intent intents = new Intent (getActivity (), SearchActivity.class);
+                startActivity (intents);
                 break;
             case R.id.home_logo:
                 Intent intent = new Intent (getActivity (), GiftSaidActivity.class);
                 startActivity (intent);
                 break;
             case R.id.Food_analysis:
-                Intent intent1=new Intent (getActivity (), LoginActivity.class);
+                Intent intent1 = new Intent (getActivity (), LoginActivity.class);
                 startActivity (intent1);
                 break;
         }

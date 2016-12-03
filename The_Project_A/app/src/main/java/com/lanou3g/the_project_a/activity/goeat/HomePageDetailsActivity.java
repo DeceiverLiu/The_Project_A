@@ -33,9 +33,10 @@ import android.widget.TextView;
 
 import com.lanou3g.the_project_a.R;
 import com.lanou3g.the_project_a.base.BaseActivity;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import it.sephiroth.android.library.picasso.Picasso;
+
 
 
 //逛吃 首页 详情

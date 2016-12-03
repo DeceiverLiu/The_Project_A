@@ -35,8 +35,8 @@ import android.widget.TextView;
 
 import com.lanou3g.the_project_a.R;
 import com.lanou3g.the_project_a.bean.HomePageGridBean;
+import com.squareup.picasso.Picasso;
 
-import it.sephiroth.android.library.picasso.Picasso;
 
 //一级界面 食物百科
 //GridView kind值为group的 适配器
@@ -51,6 +51,10 @@ public class HomePageGridGroupAdapter extends BaseAdapter {
     public void setBean (HomePageGridBean bean) {
         this.bean = bean;
         notifyDataSetChanged ();
+    }
+
+    public HomePageGridBean getBean () {
+        return bean;
     }
 
     @Override

@@ -38,6 +38,7 @@ import com.lanou3g.the_project_a.adapter.HomePageNutritionAdapter.MyViewHolder;
 import com.lanou3g.the_project_a.bean.WikipediaDetailsBean;
 import com.lanou3g.the_project_a.bean.WikipediaDetailsBean.TypesBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //食物百科 - GridView 详情 - 营养素排序
@@ -48,6 +49,7 @@ public class HomePageNutritionAdapter extends RecyclerView.Adapter<MyViewHolder>
 
     public HomePageNutritionAdapter (Context context) {
         this.context = context;
+        bean=new ArrayList<> ();
     }
 
     public void setBean (List<TypesBean> bean) {

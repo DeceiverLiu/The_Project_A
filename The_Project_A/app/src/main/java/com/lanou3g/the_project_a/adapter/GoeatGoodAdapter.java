@@ -30,17 +30,20 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lanou3g.the_project_a.R;
 import com.lanou3g.the_project_a.bean.GoeatGoodBean.FeedsBean;
+import com.lanou3g.the_project_a.onclick.MyOnClick;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import it.sephiroth.android.library.picasso.Picasso;
+
 
 //逛吃- 美食
 public class GoeatGoodAdapter extends RecyclerView.Adapter {
@@ -49,6 +52,7 @@ public class GoeatGoodAdapter extends RecyclerView.Adapter {
     private static final int COMPLEX = 2;
     private List<FeedsBean> bean;
     private Context context;
+    private MyOnClick myOnClick;
 
 
     public GoeatGoodAdapter (Context context) {
@@ -62,6 +66,14 @@ public class GoeatGoodAdapter extends RecyclerView.Adapter {
     public void setBean (List<FeedsBean> bean) {
         this.bean .addAll (bean);
         notifyDataSetChanged ();
+    }
+
+    public List<FeedsBean> getBean () {
+        return bean;
+    }
+
+    public void setMyOnClick (MyOnClick myOnClick) {
+        this.myOnClick = myOnClick;
     }
 
     @Override
@@ -87,18 +99,18 @@ public class GoeatGoodAdapter extends RecyclerView.Adapter {
 
 
     @Override
-    public void onBindViewHolder (ViewHolder holder, int position) {
+    public void onBindViewHolder (ViewHolder holder, final int position) {
         int Type=getItemViewType (position);
-        switch (Type){
+        switch (Type) {
             case SIMPLE:
-                SIMPLEHolder simpleHolder= (SIMPLEHolder) holder;
+                SIMPLEHolder simpleHolder = (SIMPLEHolder) holder;
                 simpleHolder.Good_source.setText (bean.get (position).getSource ());
                 simpleHolder.Good_tail.setText (bean.get (position).getTail ());
                 simpleHolder.Good_title.setText (bean.get (position).getTitle ());
                 Picasso.with (context).load (bean.get (position).getImages ().get (0)).into (simpleHolder.Goodfood_images);
                 break;
             case COMPLEX:
-                COMPLEXHolder complexHolder= (COMPLEXHolder) holder;
+                COMPLEXHolder complexHolder = (COMPLEXHolder) holder;
                 complexHolder.eat_goodfood_title.setText (bean.get (position).getTitle ());
                 complexHolder.eat_goodfood_source.setText (bean.get (position).getSource ());
                 complexHolder.eat_goodfood_tail.setText (bean.get (position).getTail ());
@@ -106,10 +118,13 @@ public class GoeatGoodAdapter extends RecyclerView.Adapter {
                 Picasso.with (context).load (bean.get (position).getImages ().get (1)).into (complexHolder.eat_goodfood_imgtwo);
                 Picasso.with (context).load (bean.get (position).getImages ().get (2)).into (complexHolder.eat_goodfood_three);
                 break;
-            default:
-
-                break;
         }
+        holder.itemView.setOnClickListener (new OnClickListener () {
+            @Override
+            public void onClick (View v) {
+                myOnClick.myListener (position,position);
+            }
+        });
     }
 
     @Override

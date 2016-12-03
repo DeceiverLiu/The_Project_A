@@ -36,31 +36,42 @@ import android.widget.TextView;
 
 import com.lanou3g.the_project_a.R;
 import com.lanou3g.the_project_a.bean.GoeatReviewBean;
+import com.squareup.picasso.Picasso;
 
-import it.sephiroth.android.library.picasso.Picasso;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class GoeatReviewAdapter extends BaseAdapter {
-    private GoeatReviewBean bean;
+    private List<GoeatReviewBean.FeedsBean> bean;
     private Context context;
 
 
     public GoeatReviewAdapter (Context context) {
         this.context = context;
+        bean=new ArrayList<> ();
     }
 
-    public void setBean (GoeatReviewBean bean) {
+
+
+
+    public void setBean (List<GoeatReviewBean.FeedsBean> bean) {
         this.bean = bean;
         notifyDataSetChanged ();
     }
 
+    public void Clean(){
+        bean.clear ();
+    }
+
     @Override
     public int getCount () {
-        return bean.getFeeds ().size ();
+        return bean.size ()!=0? bean.size ():0 ;
     }
 
     @Override
     public Object getItem (int i) {
-        return bean.getFeeds ().get (i);
+        return bean.get (i);
     }
 
     @Override
@@ -78,10 +89,10 @@ public class GoeatReviewAdapter extends BaseAdapter {
         }else {
             holder= (ViewHolder) view.getTag ();
         }
-        holder.reciew_text_source.setText (bean.getFeeds ().get (i).getSource ());
-        holder.reciew_text_title.setText (bean.getFeeds ().get (i).getTitle ());
-        holder.reciew_text_tail.setText (bean.getFeeds ().get (i).getTail ());
-        Picasso.with (context).load (bean.getFeeds ().get (i).getBackground ()).into (holder.relative_img);
+        holder.reciew_text_source.setText (bean.get (i).getSource ());
+        holder.reciew_text_title.setText (bean.get (i).getTitle ());
+        holder.reciew_text_tail.setText (bean.get (i).getTail ());
+        Picasso.with (context).load (bean.get (i).getBackground ()).into (holder.relative_img);
         return view;
     }
 

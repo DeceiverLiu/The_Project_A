@@ -37,14 +37,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lanou3g.the_project_a.R;
-import com.lanou3g.the_project_a.onclick.MyOnClick;
 import com.lanou3g.the_project_a.bean.GoeatHomeBean;
+import com.lanou3g.the_project_a.bean.GoeatHomeBean.FeedsBean;
+import com.lanou3g.the_project_a.onclick.MyOnClick;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import it.sephiroth.android.library.picasso.Picasso;
+
 
 //逛吃- 首页 RecyclerView适配器
 public class GoeatHomeAdapter extends RecyclerView.Adapter {
@@ -65,11 +67,19 @@ public class GoeatHomeAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged ();
     }
 
+    public List<FeedsBean> getBean () {
+        return bean;
+    }
+
+    public void Clean(){
+        bean.clear ();
+    }
+
     public void setMyOnClick (MyOnClick myOnClick) {
         this.myOnClick = myOnClick;
         notifyDataSetChanged ();
     }
-    
+
 
     @Override
     public int getItemViewType (int position) {

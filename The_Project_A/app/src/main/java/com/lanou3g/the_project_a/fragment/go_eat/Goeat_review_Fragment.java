@@ -26,13 +26,20 @@ Created by Android_刘德强 on 16/11/23.
 */
 
 
-import android.os.Handler;
-import android.os.Message;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.android.volley.VolleyError;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lanou3g.the_project_a.R;
+import com.lanou3g.the_project_a.activity.goeat.HomePageActivity;
 import com.lanou3g.the_project_a.adapter.GoeatReviewAdapter;
 import com.lanou3g.the_project_a.base.BaseFragment;
 import com.lanou3g.the_project_a.bean.GoeatReviewBean;
@@ -40,12 +47,15 @@ import com.lanou3g.the_project_a.url.MyUrl;
 import com.lanou3g.the_project_a.volley.NetHelper;
 import com.lanou3g.the_project_a.volley.NetListenet.NetListener;
 
-//逛吃 - 测评
-public class Goeat_review_Fragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
-    private static final int REFRESH_COMPLETE_R = 2110;//刷新请求码
-    private ListView listView;
+import java.util.ArrayList;
+import java.util.List;
+
+//逛吃 - 评测
+public class Goeat_review_Fragment extends BaseFragment {
+    private PullToRefreshListView listView;
     private GoeatReviewAdapter adapter;
-    private SwipeRefreshLayout swipeRefreshLayout;
+    private List<GoeatReviewBean.FeedsBean> bean;
+    private int i = 1;
 
     @Override
     public int initLayout () {
@@ -54,42 +64,72 @@ public class Goeat_review_Fragment extends BaseFragment implements SwipeRefreshL
 
     @Override
     public void initView () {
-        listView = (ListView) getView ().findViewById (R.id.review_listView);
-        swipeRefreshLayout = (SwipeRefreshLayout) getView ().findViewById (R.id.swipe_lv);
+        listView = (PullToRefreshListView) getView ().findViewById (R.id.review_listView);
+        //上拉和下拉的方式
+        listView.setMode (Mode.BOTH);
         adapter = new GoeatReviewAdapter (getContext ());
-        swipeRefreshLayout.setOnRefreshListener (this);
+        bean = new ArrayList<> ();
+
+
     }
 
-    private Handler handler = new Handler () {
-        @Override
-        public void handleMessage (Message msg) {
-            super.handleMessage (msg);
-            switch (msg.what)//获取请求码
-            {
-                case REFRESH_COMPLETE_R://如果请求码等于某个刷新请求码
-                    adapter.notifyDataSetChanged (); //适配器刷新
-                    swipeRefreshLayout.setRefreshing (false);//下拉后是否不断刷新
-                    break;
-            }
-        }
-    };
+
+
 
     @Override
     public void initData () {
         //开启线程,网络数据请求
-        requestData ();
+        requestData (Url_all (1));
+
+        listView.setAdapter (adapter);
+        listView.setOnItemClickListener (new OnItemClickListener () {
+            @Override
+            public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent (getActivity (), HomePageActivity.class);
+                intent.putExtra ("network", bean.get (position-1).getLink ());
+                startActivity (intent);
+            }
+        });
+
+        //下拉刷新
+        listView.setOnRefreshListener (new OnRefreshListener2<ListView> () {
+            //下拉刷新
+            @Override
+            public void onPullDownToRefresh (PullToRefreshBase<ListView> pullToRefreshBase) {
+                new PutDataTask().execute ();
+            }
+
+            //上拉加载
+            @Override
+            public void onPullUpToRefresh (PullToRefreshBase<ListView> pullToRefreshBase) {
+                new GetDataTask ().execute ();
+            }
+        });
     }
 
 
-    private void requestData () {
+    // 网址拼接的方法
+    public String Url_all (int i) {
+        return MyUrl.AVI_ONE + i + MyUrl.AVI_TWO;
+    }
 
-        NetHelper.MyRequest (MyUrl.EATREVIEW, GoeatReviewBean.class, new NetListener<GoeatReviewBean> () {
+
+    //网址拉取数据
+    private void requestData (String url) {
+        NetHelper.MyRequest (url, GoeatReviewBean.class, new NetListener<GoeatReviewBean> () {
             @Override
             public void successListener (GoeatReviewBean response) {
-                adapter.setBean (response);
-                listView.setAdapter (adapter);
-            }
 
+                List<GoeatReviewBean.FeedsBean> mid = response.getFeeds ();
+                if (bean == null) {
+                    bean = mid;
+                } else {
+                    for (int i = 0; i < mid.size (); i++) {
+                        bean.add (mid.get (i));
+                    }
+                }
+                adapter.setBean (bean);
+            }
             @Override
             public void errorListener (VolleyError error) {
 
@@ -99,9 +139,55 @@ public class Goeat_review_Fragment extends BaseFragment implements SwipeRefreshL
 
     }
 
-    //下拉刷新switchPreference的监听事件
-    @Override
-    public void onRefresh () {
-        handler.sendEmptyMessageDelayed (REFRESH_COMPLETE_R, 2000);//参1: 请求码  参2:刷新时长
+
+    // 下拉刷新的异步任务
+    private class PutDataTask extends AsyncTask<Integer, Void, Integer> {
+
+        @Override
+        protected Integer doInBackground (Integer... params) {
+            try {
+                Thread.sleep (2000);
+                i = 1;
+            } catch (InterruptedException e) {
+                e.printStackTrace ();
+            }
+            return i;
+        }
+
+        @Override
+        protected void onPostExecute (Integer integer) {
+            super.onPostExecute (integer);
+            adapter.Clean ();
+            requestData (Url_all (integer));
+            adapter.notifyDataSetChanged ();
+            listView.onRefreshComplete ();
+        }
+
     }
+
+    // 上啦加载的异步任务
+    private class GetDataTask extends AsyncTask<Integer, Void, Integer> {
+
+        @Override
+        protected Integer doInBackground (Integer... params) {
+            try {
+                Thread.sleep (2000);
+                i = i + 1;
+            } catch (InterruptedException e) {
+                e.printStackTrace ();
+            }
+            return i;
+        }
+
+        @Override
+        protected void onPostExecute (Integer integer) {
+            super.onPostExecute (integer);
+            requestData (Url_all (integer));
+
+            adapter.notifyDataSetChanged ();
+            listView.onRefreshComplete ();
+        }
+
+    }
+
 }
