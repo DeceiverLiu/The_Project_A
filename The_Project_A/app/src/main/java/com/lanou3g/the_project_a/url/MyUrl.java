@@ -48,6 +48,9 @@ public class MyUrl {
     public static final String ClassificationMiddle ="&value=";
     public static final String ClassificationAfter ="&order_by=1&page=";
     public static final String ClassificationLast ="&order_asc=0&token=&user_key=&app_version=2.6&app_device=Android&os_version=5.1&phone_model=Google+Nexus+7+2013+-+5.1.0+-+API+22+-+1200x1920&channel=baidu";
-
+    //搜索下方推荐
+    public static final String SearchRecommended="http://food.boohee.com/fb/v1/keywords?token=&user_key=&app_version=2.6&app_device=Android&os_version=5.1&phone_model=Google+Nexus+7+2013+-+5.1.0+-+API+22+-+1200x1920&channel=baidu";
+    //搜索网址拼接
+    public static final String SearchField="http://food.boohee.com/fb/v1/search?page=1&order_asc=desc&q=";
 
 }

@@ -51,15 +51,18 @@
                 android:layout_centerInParent="true"
                 android:text="分享"/>
         </RelativeLayout>
-        <RelativeLayout android:layout_width="@dimen/Zero"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-            <ImageView
+        <RelativeLayout
+            android:id="@+id/whetherCollection"
+            android:layout_width="@dimen/Zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/know_collection"
-                android:src="@mipmap/ic_photo_share"/>
+                android:button="@null"
+                android:background="@drawable/whethercollection"/>
             <TextView
                 android:id="@+id/know_collection"
                 android:layout_width="wrap_content"

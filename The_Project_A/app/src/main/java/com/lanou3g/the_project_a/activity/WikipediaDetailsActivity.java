@@ -38,6 +38,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
@@ -71,10 +72,11 @@ public class WikipediaDetailsActivity extends BaseActivity implements OnClickLis
     private PullToRefreshListView wikipedia_details_listview;
     private String kind;
     private String id;
-    private int i= 1;
+    private int i = 1;
     private HomePageClassificationFoodAdapter hAdapter;
     private String classificationUrl;
     private List<FoodsBean> bean;
+    private TextView wikipedia_details_title;
 
     @Override
     public int getLayout () {
@@ -92,7 +94,8 @@ public class WikipediaDetailsActivity extends BaseActivity implements OnClickLis
         hAdapter = new HomePageClassificationFoodAdapter (this);
         adapter = new HomePageNutritionAdapter (WikipediaDetailsActivity.this);
         wikipedia_details_listview.setMode (Mode.BOTH);
-        bean=new ArrayList<> ();
+        bean = new ArrayList<> ();
+        wikipedia_details_title = (TextView) findViewById (R.id.wikipedia_details_title);
 
     }
 
@@ -104,6 +107,9 @@ public class WikipediaDetailsActivity extends BaseActivity implements OnClickLis
         ClassificationOfFood (classificationUrl);
         //下拉刷新 上拉加载
         OnRefreshListener ();
+        Intent intent = getIntent ();
+        String s = intent.getStringExtra ("title");
+        wikipedia_details_title.setText (s);
     }
 
 
@@ -124,15 +130,13 @@ public class WikipediaDetailsActivity extends BaseActivity implements OnClickLis
 
 
     //接值  获得网址拼接中间字段
-    private void getCore() {
+    private void getCore () {
         Intent intent = getIntent ();
         kind = intent.getStringExtra ("kind");
         id = intent.getStringExtra ("id");
         //食物分类网址拼接
-        classificationUrl = MyUrl.ClassificationBefore + kind + MyUrl.ClassificationMiddle + id + MyUrl.ClassificationAfter+i+MyUrl.ClassificationLast;
+        classificationUrl = MyUrl.ClassificationBefore + kind + MyUrl.ClassificationMiddle + id + MyUrl.ClassificationAfter + i + MyUrl.ClassificationLast;
     }
-
-
 
 
     @Override
@@ -163,7 +167,7 @@ public class WikipediaDetailsActivity extends BaseActivity implements OnClickLis
     }
 
     public String Url_all (int i) {
-        return MyUrl.ClassificationBefore + kind + MyUrl.ClassificationMiddle + id + MyUrl.ClassificationAfter+i+MyUrl.ClassificationLast;
+        return MyUrl.ClassificationBefore + kind + MyUrl.ClassificationMiddle + id + MyUrl.ClassificationAfter + i + MyUrl.ClassificationLast;
     }
 
 
@@ -192,11 +196,11 @@ public class WikipediaDetailsActivity extends BaseActivity implements OnClickLis
             @Override
             public void successListener (ClassificationOfFoodBean response) {
 
-                List<ClassificationOfFoodBean.FoodsBean> mid =response.getFoods ();
-                if (bean==null){
+                List<ClassificationOfFoodBean.FoodsBean> mid = response.getFoods ();
+                if (bean == null) {
 
                     bean = mid;
-                }else {
+                } else {
                     for (int i1 = 0; i1 < mid.size (); i1++) {
                         bean.add (mid.get (i1));
                     }
@@ -212,17 +216,12 @@ public class WikipediaDetailsActivity extends BaseActivity implements OnClickLis
     }
 
 
-    // 上啦加载的异步任务
+    // 上拉加载的异步任务
     private class GetDataTask extends AsyncTask<Integer, Void, Integer> {
 
         @Override
         protected Integer doInBackground (Integer... params) {
-//            try {
-//                Thread.sleep (2000);
-                i = i + 1;
-//            } catch (InterruptedException e) {
-//                e.printStackTrace ();
-//            }
+            i = i + 1;
             return i;
         }
 

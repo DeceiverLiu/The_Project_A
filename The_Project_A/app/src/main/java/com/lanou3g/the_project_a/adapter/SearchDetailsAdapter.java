@@ -22,9 +22,8 @@ package com.lanou3g.the_project_a.adapter;
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
          佛祖保佑       永无BUG
 
-Created by Android_刘德强 on 16/12/1.
+Created by Android_刘德强 on 16/12/9.
 */
-
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -34,8 +33,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.lanou3g.the_project_a.R;
-import com.lanou3g.the_project_a.bean.ClassificationOfFoodBean;
-import com.lanou3g.the_project_a.bean.ClassificationOfFoodBean.FoodsBean;
+import com.lanou3g.the_project_a.bean.SearchDetailsBean;
+import com.lanou3g.the_project_a.bean.SearchDetailsBean.ItemsBean;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -43,22 +42,22 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-//详情Adapter
-public class HomePageClassificationFoodAdapter extends BaseAdapter {
+//搜索结果适配器
+public class SearchDetailsAdapter  extends BaseAdapter{
 
-    private List<ClassificationOfFoodBean.FoodsBean> bean;
+    private List<ItemsBean> bean;
     private Context context;
 
-    public HomePageClassificationFoodAdapter (Context context) {
+    public  SearchDetailsAdapter (Context context) {
         this.context = context;
         bean=new ArrayList<> ();
     }
 
-    public List<FoodsBean> getBean () {
+    public List<SearchDetailsBean.ItemsBean> getBean () {
         return bean;
     }
 
-    public void setBean (List<FoodsBean> bean) {
+    public void setBean (List<ItemsBean> bean) {
         this.bean = bean;
         notifyDataSetChanged ();
     }
@@ -81,13 +80,13 @@ public class HomePageClassificationFoodAdapter extends BaseAdapter {
 
     @Override
     public View getView (int position, View convertView, ViewGroup parent) {
-        ViewHolder holder=null;
+        SearchDetailsAdapter.ViewHolder holder=null;
         if (convertView==null){
             convertView= LayoutInflater.from (context).inflate (R.layout.item_classification_of_food,parent,false);
-            holder=new ViewHolder (convertView);
+            holder=new  SearchDetailsAdapter.ViewHolder (convertView);
             convertView.setTag (holder);
         }else {
-            holder= (ViewHolder) convertView.getTag ();
+            holder= ( SearchDetailsAdapter.ViewHolder) convertView.getTag ();
         }
         Picasso.with (context).load (bean.get (position).getThumb_image_url ()).into (holder.thumb_image_url);
         holder.thumb_name.setText (bean.get (position).getName ());
@@ -106,5 +105,4 @@ public class HomePageClassificationFoodAdapter extends BaseAdapter {
             weight = (TextView) view.findViewById (R.id.weight);
         }
     }
-
 }

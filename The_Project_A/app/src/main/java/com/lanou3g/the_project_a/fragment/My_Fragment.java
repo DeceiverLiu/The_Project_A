@@ -35,6 +35,7 @@ import android.widget.RelativeLayout;
 
 import com.lanou3g.the_project_a.activity.LoginActivity;
 import com.lanou3g.the_project_a.R;
+import com.lanou3g.the_project_a.activity.MyCollcetActivity;
 import com.lanou3g.the_project_a.activity.SetUpActivity;
 import com.lanou3g.the_project_a.base.BaseFragment;
 
@@ -84,7 +85,8 @@ public class My_Fragment extends BaseFragment implements OnClickListener{
                 StartAty ();
                 break;
             case R.id.RelativeLayout_collcet:
-                StartAty ();
+                Intent intents=new Intent (getActivity (), MyCollcetActivity.class);
+                startActivity (intents);
                 break;
             case R.id.RelativeLayout_upload:
                 StartAty ();

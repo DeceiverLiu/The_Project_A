@@ -35,6 +35,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.lanou3g.the_project_a.R;
@@ -55,6 +56,7 @@ import com.lanou3g.the_project_a.volley.NetListenet.NetListener;
 //食物百科 Fragment 页面
 public class WikipediaFragment extends BaseFragment implements OnClickListener {
     private LinearLayout linearsearch;//搜索按钮
+    private TextView home_group_text;
     private HomePageGridBean bean;
     private ImageView home_logo;
     private Button foodAnalysis;//饮食分析
@@ -83,6 +85,7 @@ public class WikipediaFragment extends BaseFragment implements OnClickListener {
         homePageGridGroupAdapter = new HomePageGridGroupAdapter (getContext ());
         homePageGridRestaurantAdapter = new HomePageGridRestaurantAdapter (getContext ());
         bean = new HomePageGridBean ();
+        home_group_text = (TextView) getView ().findViewById (R.id.home_group_text);
 
     }
 
@@ -101,6 +104,7 @@ public class WikipediaFragment extends BaseFragment implements OnClickListener {
             public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent (getActivity (), WikipediaDetailsActivity.class);
                 intent.putExtra ("kind", bean.getGroup ().get (0).getKind ());
+                intent.putExtra ("title", bean.getGroup ().get (0).getCategories ().get (position).getName ());
                 intent.putExtra ("id", bean.getGroup ().get (0).getCategories ().get (position).getId () + "");
                 startActivity (intent);
             }
@@ -110,6 +114,7 @@ public class WikipediaFragment extends BaseFragment implements OnClickListener {
             public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent (getActivity (), WikipediaDetailsActivity.class);
                 intent.putExtra ("kind", bean.getGroup ().get (1).getKind ());
+                intent.putExtra ("title", bean.getGroup ().get (1).getCategories ().get (position).getName ());
                 intent.putExtra ("id", bean.getGroup ().get (1).getCategories ().get (position).getId () + "");
                 startActivity (intent);
             }
@@ -119,6 +124,7 @@ public class WikipediaFragment extends BaseFragment implements OnClickListener {
             public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent (getActivity (), WikipediaDetailsActivity.class);
                 intent.putExtra ("kind", bean.getGroup ().get (2).getKind ());
+                intent.putExtra ("title", bean.getGroup ().get (2).getCategories ().get (position).getName ());
                 intent.putExtra ("id", bean.getGroup ().get (2).getCategories ().get (position).getId () + "");
                 startActivity (intent);
             }

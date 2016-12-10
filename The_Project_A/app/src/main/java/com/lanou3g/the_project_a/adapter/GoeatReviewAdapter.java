@@ -46,13 +46,10 @@ public class GoeatReviewAdapter extends BaseAdapter {
     private List<GoeatReviewBean.FeedsBean> bean;
     private Context context;
 
-
     public GoeatReviewAdapter (Context context) {
         this.context = context;
         bean=new ArrayList<> ();
     }
-
-
 
 
     public void setBean (List<GoeatReviewBean.FeedsBean> bean) {

@@ -8,8 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:orientation="horizontal"
-    >
+        android:orientation="horizontal">
         <LinearLayout
             android:id="@+id/wikipedia_details_linear"
             android:layout_width="wrap_content"
@@ -29,14 +28,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="sortName"
                 android:textColor="#000000"
                 android:textSize="20sp"
             />
         </LinearLayout>
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/Zero"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 

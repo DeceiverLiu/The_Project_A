@@ -87,6 +87,10 @@ public class Goeat_review_Fragment extends BaseFragment {
             public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent (getActivity (), HomePageActivity.class);
                 intent.putExtra ("network", bean.get (position-1).getLink ());
+                intent.putExtra ("Rsourec",bean.get (position-1).getSource ());
+                intent.putExtra ("Rtitle",bean.get (position-1).getTitle ());
+                intent.putExtra ("Rtail",bean.get (position-1).getTail ());
+                intent.putExtra ("Rbackground",bean.get (position-1).getBackground ());
                 startActivity (intent);
             }
         });

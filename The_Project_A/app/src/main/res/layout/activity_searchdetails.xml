@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/SearchDetailsBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:src="@mipmap/ic_back_dark_center"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入食物名称"
+            android:singleLine="true"
+            android:textSize="20sp"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:src="@mipmap/ic_clear"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:src="@mipmap/ic_homepage_search"/>
+    </LinearLayout>
+
+    <include layout="@layout/background_maxline"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/Fifteen"
+            android:layout_marginRight="5dp"
+            android:text="营养素排行"
+            android:textColor="#000000"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:background="@null"
+            android:src="@mipmap/ic_food_arrow_ordering"/>
+    </LinearLayout>
+
+    <include layout="@layout/background_line"/>
+    <ListView
+        android:id="@+id/searchResults_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+</LinearLayout>

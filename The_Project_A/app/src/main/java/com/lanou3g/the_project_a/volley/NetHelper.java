@@ -32,7 +32,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.lanou3g.the_project_a.app.MyApp;
+import com.lanou3g.the_project_a.greendao.MyApp;
 import com.lanou3g.the_project_a.volley.NetListenet.NetListener;
 
 import java.util.HashMap;

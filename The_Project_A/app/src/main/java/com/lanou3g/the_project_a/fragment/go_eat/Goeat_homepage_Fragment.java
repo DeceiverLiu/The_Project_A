@@ -58,6 +58,7 @@ public class Goeat_homepage_Fragment extends BaseFragment {
     private int i = 1;
     private List<FeedsBean> data;
 
+
     @Override
     public int initLayout () {
         return R.layout.fragment_goeat_homepage;
