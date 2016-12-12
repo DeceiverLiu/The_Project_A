@@ -32,7 +32,9 @@
                   android:layout_height="wrap_content"
                   android:background="@color/White"
                   android:padding="@dimen/Ten">
-        <RelativeLayout android:layout_width="@dimen/Zero"
+        <RelativeLayout
+            android:id="@+id/MyShare"
+            android:layout_width="@dimen/Zero"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
             <ImageView

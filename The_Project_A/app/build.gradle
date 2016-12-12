@@ -42,5 +42,5 @@ dependencies {
     compile 'com.github.userswlwork:pull-to-refresh:1.0.0'
     compile 'com.github.jdsjlzx:LRecyclerView:1.2.8'
     compile 'org.greenrobot:greendao:3.2.0'
-
+    compile files('libs/MobCommons-2016.1107.1809.jar')
 }
