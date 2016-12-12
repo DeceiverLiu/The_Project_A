@@ -29,6 +29,7 @@
         <activity android:name=".activity.SetUpActivity"/>
         <activity android:name=".activity.SearchDetailsActivity"/>
         <activity android:name=".activity.MyCollcetActivity"/>
+        <activity android:name=".activity.CollectionDetailsActivity"/>
     </application>
 
 </manifest>
